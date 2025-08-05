@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Redações ENEM</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Simulador de Redações ENEM</h1>
+        <p>Escolha a competência ou erros mistos e veja uma redação com defeitos para corrigir.</p>
+    </header>
+
+    <main>
+        <section id="controls">
+            <label for="competencia">Selecione a competência:</label>
+            <select id="competencia">
+                <option value="all">-- Escolher --</option>
+                <option value="1">Competência 1 - Norma culta</option>
+                <option value="2">Competência 2 - Compreensão da proposta</option>
+                <option value="3">Competência 3 - Seleção e organização</option>
+                <option value="4">Competência 4 - Mecanismos linguísticos</option>
+                <option value="5">Competência 5 - Proposta de intervenção</option>
+                <option value="misto">Erros mistos</option>
+            </select>
+            <button id="gerar">Gerar Redação</button>
+        </section>
+
+        <section id="redacao-section" style="display:none;">
+            <h2>Redação com Defeito</h2>
+            <p id="texto-defeituoso"></p>
+            <button id="mostrar-correta">Mostrar Versão Corrigida</button>
+            <h2>Versão Corrigida</h2>
+            <p id="texto-corrigido" style="display:none;"></p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Projeto para prática de correção de redações ENEM</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
