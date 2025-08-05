@@ -1,10 +1,13 @@
 let redacoes = [];
+let jsonCarregado = false;
 
 // Carregar o JSON local
 fetch('redacoes_enem.json')
     .then(response => response.json())
     .then(data => {
         redacoes = data;
+        jsonCarregado = true;
+        console.log(`JSON carregado com ${redacoes.length} redações.`);
     })
     .catch(error => {
         console.error("Erro ao carregar o arquivo JSON:", error);
@@ -12,6 +15,11 @@ fetch('redacoes_enem.json')
     });
 
 document.getElementById('gerar').addEventListener('click', () => {
+    if (!jsonCarregado) {
+        alert("As redações ainda estão carregando. Tente novamente em alguns segundos.");
+        return;
+    }
+
     const comp = document.getElementById('competencia').value;
     let filtradas;
 
@@ -21,8 +29,13 @@ document.getElementById('gerar').addEventListener('click', () => {
         alert("Selecione uma competência.");
         return;
     } else {
-        filtradas = redacoes.filter(r => Number(r.competencia) === Number(comp) && !r.categoria.toLowerCase().includes('misto'));
+        filtradas = redacoes.filter(
+            r => Number(r.competencia) === Number(comp) &&
+                 !r.categoria.toLowerCase().includes('misto')
+        );
     }
+
+    console.log(`Filtro aplicado: competência=${comp}, encontradas=${filtradas.length}`);
 
     if (filtradas.length === 0) {
         alert("Nenhuma redação encontrada para essa seleção.");
